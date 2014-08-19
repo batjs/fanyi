@@ -1,5 +1,5 @@
 var request = require('request');
-var parser = require('xml2json2');
+//var parser = require('xml2json');
 var SOURCE = require('./lib/source.json');
 var print = require('./lib/print');
 var spawn = require('child_process').spawn;
@@ -19,15 +19,15 @@ module.exports = function(word) {
   spawn('say', [word]);
 
   // iciba
-  request.get(SOURCE['iciba'] + encodeURIComponent(word), function (error, response, body) {
-    if (!error && response.statusCode == 200) {
+  //request.get(SOURCE['iciba'] + encodeURIComponent(word), function (error, response, body) {
+    //if (!error && response.statusCode == 200) {
       // escape " -> '
-      body = body.replace(/&quot;/g, '&#39;');
+      //body = body.replace(/&quot;/g, '&#39;');
       // iciba need twice decode ...
-      var data = JSON.parse(entities.decode(entities.decode(parser.toJson(body)))).dict;
-      print.iciba(data);
-    }
-  });
+      //var data = JSON.parse(entities.decode(entities.decode(parser.toJson(body)))).dict;
+      //print.iciba(data);
+    //}
+  //});
 
   // youdao
   request.get(SOURCE['youdao'] + encodeURIComponent(word), function (error, response, body) {
